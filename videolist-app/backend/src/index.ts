@@ -1,5 +1,7 @@
+import config from "./config";
 import app from "./app";
+import "./database";
 
-app.listen(4000, () => {
-  console.log("Server running on port", 4000);
+app.listen(config.SERVER_PORT, () => {
+  console.log("Server running on port", config.SERVER_PORT);
 });
