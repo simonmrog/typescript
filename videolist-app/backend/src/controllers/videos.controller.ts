@@ -1,9 +1,8 @@
-import { RequestHandler } from "express";
-import { nextTick } from "process";
+import { NextFunction, RequestHandler } from "express";
 
 import * as videosService from "../services/videos.services";
 
-export const getVideos: RequestHandler = async (req, res, next): Promise<void> => {
+export const getVideos: RequestHandler = async (req, res, next: NextFunction): Promise<void> => {
   try {
     const videos = await videosService.getVideos();
     res.status(200).json(videos);
@@ -12,7 +11,7 @@ export const getVideos: RequestHandler = async (req, res, next): Promise<void> =
   }
 }
 
-export const getVideoById: RequestHandler = async (req, res, next): Promise<void> => {
+export const getVideoById: RequestHandler = async (req, res, next: NextFunction): Promise<void> => {
   try {
     const { id } = req.params;
     const video = await videosService.getVideoById(id);
@@ -24,7 +23,7 @@ export const getVideoById: RequestHandler = async (req, res, next): Promise<void
   }
 }
 
-export const createVideo: RequestHandler = async (req, res, next): Promise<void> => {
+export const createVideo: RequestHandler = async (req, res, next: NextFunction): Promise<void> => {
   try {
     const { title, description, url } = req.body;
     const newVideo = await videosService.createVideo(
@@ -36,7 +35,7 @@ export const createVideo: RequestHandler = async (req, res, next): Promise<void>
   }
 }
 
-export const updateVideo: RequestHandler = async (req, res, next): Promise<void> => {
+export const updateVideo: RequestHandler = async (req, res, next: NextFunction): Promise<void> => {
   try {
     const { id } = req.params;
     const updated = await videosService.updateVideo(id, req.body);
@@ -46,7 +45,7 @@ export const updateVideo: RequestHandler = async (req, res, next): Promise<void>
   }
 }
 
-export const deleteVideo: RequestHandler = async (req, res, next): Promise<void> => {
+export const deleteVideo: RequestHandler = async (req, res, next: NextFunction): Promise<void> => {
   try {
     const { id } = req.params;
     const deleted = await videosService.deleteVideo(id);
