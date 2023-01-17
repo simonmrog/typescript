@@ -4,8 +4,12 @@ import { nextTick } from "process";
 import * as videosService from "../services/videos.services";
 
 export const getVideos: RequestHandler = async (req, res, next): Promise<void> => {
-  const videos = await videosService.getVideos();
-  res.status(200).json(videos);
+  try {
+    const videos = await videosService.getVideos();
+    res.status(200).json(videos);
+  } catch(err) {
+    next(err);
+  }
 }
 
 export const getVideoById: RequestHandler = async (req, res, next): Promise<void> => {
@@ -33,9 +37,13 @@ export const createVideo: RequestHandler = async (req, res, next): Promise<void>
 }
 
 export const updateVideo: RequestHandler = async (req, res, next): Promise<void> => {
-  const { id } = req.params;
-  const updated = await videosService.updateVideo(id, req.body);
-  res.status(200).json(updated);
+  try {
+    const { id } = req.params;
+    const updated = await videosService.updateVideo(id, req.body);
+    res.status(200).json(updated);
+  } catch(err) {
+    next(err);
+  }
 }
 
 export const deleteVideo: RequestHandler = async (req, res, next): Promise<void> => {
