@@ -15,3 +15,14 @@ Content-Type: application/json
   "description": "Sherlock Series",
   "url": "https://www.youtube.com/watch?v=-bBHT158E0s"
 }
+
+### Update video
+PUT {{api_url}}/api/videos/63c5ed4043026cca7d0105cb
+Content-Type: application/json
+
+{
+  "title": "Sherlock modified"
+}
+
+### Delete video
+DELETE {{api_url}}/api/videos/63c5eb9ef5226751977ac6d3

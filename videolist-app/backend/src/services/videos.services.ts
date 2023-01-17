@@ -1,8 +1,9 @@
 import video from "../models/video";
 import VideoModel from "../models/video";
-import IVideo from "../models/video.interface";
+import { IVideo, IUpdateVideo, IVideoInDB } from "../models/video.interface";
 
 export const getVideos = () => {
+  return VideoModel.find();
 };
 
 export const getVideoById = async (id: string) => {
@@ -17,8 +18,13 @@ export const createVideo = async (payload: IVideo) => {
   return newVideo.save();
 };
 
-export const updateVideo = () => {
+export const updateVideo = async (id: string, payload: IUpdateVideo): Promise<IVideoInDB | null> => {
+  return await VideoModel.findByIdAndUpdate(id, payload, { new: true });
 };
 
-export const deleteVideo = () => {
+export const deleteVideo = async (id: string): Promise<IVideoInDB | null> => {
+  const video = await VideoModel.findById(id);
+  if (!video)
+    throw new Error("Video not found");
+  return await VideoModel.findByIdAndDelete(id);
 };
