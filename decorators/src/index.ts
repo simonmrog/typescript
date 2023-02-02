@@ -11,8 +11,14 @@ class ExampleClass {
     this.data = ["a", "b"];
   }
 
+  anotherMethod() {
+    console.log("Another Method");
+  }
+
   @firstMethodDecorator("3")
   getData() {
     return this.data;
   }
 }
+
+console.log(ExampleClass.prototype);

@@ -12,6 +12,9 @@ let ExampleClass = class ExampleClass {
         console.log("Constructor");
         this.data = ["a", "b"];
     }
+    anotherMethod() {
+        console.log("Another Method");
+    }
     getData() {
         return this.data;
     }
@@ -23,3 +26,7 @@ ExampleClass = __decorate([
     (0, decorators_1.firstClassDecorator)("1"),
     (0, decorators_1.secondClassDecorator)("2")
 ], ExampleClass);
+ExampleClass.prototype.oneMethod = function () {
+    console.log("One Method");
+};
+console.log(ExampleClass.prototype);
