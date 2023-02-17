@@ -5,7 +5,7 @@ export interface IKafkaProducer {
 }
 
 class KafkaProducer implements IKafkaProducer {
-  private readonly _producer;
+  private readonly _producer: any;
 
   constructor() {
     this._producer = kafka.producer();
