@@ -1,4 +1,4 @@
 import KafkaConsumer from "./services/kafkaConsumer";
 
 const consumer = new KafkaConsumer();
-consumer.run("animals", false);
+consumer.run("test", false);

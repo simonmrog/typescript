@@ -4,7 +4,7 @@ import KafkaProducer from "./services/kakfaProducer";
 async function produceMessage(): Promise<string | undefined> {
   try {
     const animal = generateAnimal();
-    await producer.run("animals", animal);
+    await producer.run("test", animal);
     return animal;
   } catch (err: any) {
     console.error(err);

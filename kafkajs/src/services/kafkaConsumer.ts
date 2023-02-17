@@ -14,13 +14,21 @@ class KafkaConsumer implements IKafkaConsumer {
     });
   }
 
+  async connect() {
+    try {
+      await this._consumer.connect();
+      await this._consumer.subscribe({
+        topic: config.KAFKA_CONSUMER_TOPIC,
+        fromBeginning: config.KAFKA_CONSUMER_FROM_BEGINNING,
+      });
+    } catch (err: any) {
+      console.error("error in consumer.connect", err.stack || err);
+    }
+  }
+
   async run(topic: string, fromBeginning: boolean = true) {
     try {
-      console.log("Connecting consumer...");
-      await this._consumer.connect();
-      console.log("Subscribing consumer to topic...");
-      await this._consumer.subscribe({ topic, fromBeginning });
-      console.log("Running consumer...");
+      await this.connect();
       await this._consumer.run({
         eachMessage: async ({ partition, message }: any) => {
           console.log({
@@ -32,6 +40,15 @@ class KafkaConsumer implements IKafkaConsumer {
       });
     } catch (err) {
       console.error(err);
+      await this.disconnect();
+    }
+  }
+
+  async disconnect() {
+    try {
+      await this._consumer.disconnect();
+    } catch (err: any) {
+      console.error("error in consumer.disconnect", err.stack || err);
     }
   }
 }
