@@ -1,4 +1,7 @@
 /// <reference path="./baseComponent.ts" />
+/// <reference path="../decorators/autobind.ts" />
+/// <reference path="../models/project.model.ts" />
+/// <reference path="../models/interfaces.ts" />
 
 namespace App {
   export class ProjectItem
