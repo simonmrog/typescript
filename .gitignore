@@ -102,3 +102,12 @@ dist
 
 # TernJS port file
 .tern-port
+
+# Ignore directories named 'build' at any level
+build/
+
+# Ignore directories named 'dist' at any level
+dist/
+
+# Ignore directories named 'out' at any level
+out/
