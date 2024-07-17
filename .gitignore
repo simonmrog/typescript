@@ -111,3 +111,5 @@ dist/
 
 # Ignore directories named 'out' at any level
 out/
+
+.DS_Store
